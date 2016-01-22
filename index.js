@@ -25,7 +25,7 @@ const _ = require('lodash');
 ** ftp.cd('some_directory').rm('./test.txt').exec(console.log)
 */
 
-const defaults = {
+const defaultsConfig = {
   host: '',
   username: '',
   password: '',
@@ -39,7 +39,7 @@ const defaults = {
   cwd: '' // Use a different working directory
 }
 
-const availableConfig = _.keys(defaults).concat([ 'port', 'protocol' ]);
+const availableConfig = _.keys(defaultsConfig).concat([ 'port', 'protocol' ]);
 
 const fail = msg => { throw new Error(msg) };
 const pass = _ => _;
@@ -63,7 +63,7 @@ function FTP(options) {
   let cmds = [];
 
   // Extend options with defaults
-  const opts = _.defaults(_.pick(options, availableConfig));
+  const opts = _.defaults(_.pick(options, availableConfig), defaultsConfig);
   
   // Validation
   if (!opts.host)
@@ -106,7 +106,7 @@ function FTP(options) {
     rm,
     rmdir,
     raw,
-		catch: _catch,
+    catch: _catch,
     addFile: put,
     getFile: get,
     move: mv,
