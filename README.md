@@ -1,5 +1,7 @@
-node-ftps
+node-ftps-promise
 =========
+
+Fork of [node-ftps](https://github.com/Atinux/node-ftps) using available ES6 in node 4.2.1 and Promises
 
 FTP, FTPS and SFTP client for node.js, mainly a `lftp` wrapper.
 
@@ -96,10 +98,7 @@ So...be cautious because ./test.txt has been added
 */
 
 ```
-
 Why?
 ----
 
-Because I didn't find an sftp and ftps module in node.js, this is just a pretty simple spawn of the `lftp` command, but it works for me, and hopefully for you too :)
-
-Currently it has no tests but pull requests are welcome.
+Because I wantded to be able to compose it with promises and wanted methods to be first-class, so avoid the hassle of prototype.
