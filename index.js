@@ -142,8 +142,6 @@ function FTP(options) {
       lftp.stderr.on('data', res => stderr.push(res))
       lftp.on('error', reject);
       lftp.on('exit', () => resolve({
-        stderr,
-        stdout,
         error: stderr.join(''),
         data: stdout.join('')
       }))

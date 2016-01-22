@@ -24,7 +24,7 @@ Usage
 
 ``` js
 var FTPS = require('ftps');
-var ftps = new FTPS({
+var ftps = FTPS({
   host: 'domain.com', // required
   username: 'Test', // required
   password: 'Test', // required
@@ -40,7 +40,7 @@ var ftps = new FTPS({
   cwd: '' // Optional, defaults to the directory from where the script is executed 
 });
 // Do some amazing things
-ftps.cd('some_directory').addFile(__dirname + '/test.txt').exec(console.log);
+ftps.cd('some_directory').addFile(__dirname + '/test.txt').then(console.log);
 ```
 
 Some documentation
@@ -77,16 +77,15 @@ For information, ls, pwd, ... rm are just some alias of raw() method.
 
 Run the commands
 ``` js
-ftps.exec(function (err, res) {
-  // err will be null (to respect async convention)
-  // res is an hash with { error: stderr || null, data: stdout }
+ftps.exec().then(res => {
+  // res is an hash with { error: stderr, data: stdout }
 });
-// exec() return the child process of the spwan() method
+// exec() return a promise
 ```
 
 Also, take note that if a command fails it will not stop the next commands from executing, for example:
 ``` js
-ftps.cd('non-existing-dir/').addFile('./test.txt').exec(console.log);
+ftps.cd('non-existing-dir/').addFile('./test.txt').then(console.log);
 /*
 Will add file on ~/ and give:
 {
