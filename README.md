@@ -98,3 +98,7 @@ So...be cautious because ./test.txt has been added
 */
 
 ```
+Why?
+----
+
+Because I wantded to be able to compose it with promises and wanted methods to be first-class, so avoid the hassle of prototype.
